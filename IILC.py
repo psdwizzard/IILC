@@ -167,6 +167,9 @@ else:
         for macpath, dirs, files in os.walk(macpath):
             for filename in files:
                 w.writerow([macdrive+macpath+"/"+filename])
+#this part of the code does not work in this app yet, it works on it own but i have not gotten it to work in the app yet.
+
+
 
 new_rows = [] # a holder for our modified rows when we make them
 changes = {   # a dictionary of changes to make, find 'key' substitue with 'value'
