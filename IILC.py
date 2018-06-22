@@ -97,7 +97,8 @@ else:
         w=csv.writer(csvOut)
         for macpath, dirs, files in os.walk(macpath):
             for filename in files:
-                w.writerow([filename])                
+                w.writerow([filename])
+                csvOut.close()
     if macwhat == "FILE":
        csvOut=open(macdoc+".csv",'w')
        w=csv.writer(csvOut)
@@ -161,26 +162,22 @@ else:
             for filename in files:
                 w.writerow([macdrive+macpath+"/"+filename])
      
-    if macwhat == "path":
+    elif macwhat == "path":
         csvOut=open(macdoc+".csv",'w')
         w=csv.writer(csvOut)
         for macpath, dirs, files in os.walk(macpath):
             for filename in files:
                 w.writerow([macdrive+macpath+"/"+filename])
-#this part of the code does not work in this app yet, it works on it own but i have not gotten it to work in the app yet.
-
-
-
-new_rows = [] # a holder for our modified rows when we make them
-changes = {   # a dictionary of changes to make, find 'key' substitue with 'value'
-    '/' : ':', # I assume both 'key' and 'value' are strings
-    }
+        new_rows = [] # a holder for our modified rows when we make them
+        changes = {   # a dictionary of changes to make, find 'key' substitue with 'value'
+            '/' : ':', # I assume both 'key' and 'value' are strings
+            }
 with open(macdoc+'.csv', 'rb') as f:
     reader = csv.reader(f) # pass the file to our csv reader
     for row in reader:     # iterate over the rows in the file
         new_row = row      # at first, just copy the row
         for key, value in changes.items(): # iterate over 'changes' dictionary
-            new_row = [ x.replace(key, value) for x in new_row ] # make the substitutions
+           new_row = [ x.replace(key, value) for x in new_row ] # make the substitutions
         new_rows.append(new_row) # add the modified rows
 with open(macdoc+'.csv', 'wb') as f:
         # Overwrite the old file with the modified rows
