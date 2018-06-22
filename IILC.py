@@ -129,33 +129,33 @@ else:
        for macpath, dirs, files in os.walk(macpath):
             for filename in files:
                 w.writerow([filename])
-    if macwhat == "PATHS":  
+    elif macwhat == "PATHS":  
         csvOut=open(macdoc+".csv",'w')
         w=csv.writer(csvOut)
         for macpath, dirs, files in os.walk(macpath):
             for filename in files:
                 w.writerow([macdrive+macpath+"/"+filename])
      
-    if macwhat == "PATH":
+    elif macwhat == "PATH":
         csvOut=open(macdoc+".csv",'w')
         w=csv.writer(csvOut)
         for macpath, dirs, files in os.walk(macpath):
             for filename in files:
                 w.writerow([macdrive+macpath+"/"+filename])
-    if macwhat == "Paths":  
+    elif macwhat == "Paths":  
         csvOut=open(macdoc+".csv",'w')
         w=csv.writer(csvOut)
         for macpath, dirs, files in os.walk(macpath):
             for filename in files:
                 w.writerow([macdrive+macpath+"/"+filename])
      
-    if macwhat == "Path":
+    elif macwhat == "Path":
         csvOut=open(macdoc+".csv",'w')
         w=csv.writer(csvOut)
         for macpath, dirs, files in os.walk(macpath):
             for filename in files:
                 w.writerow([macdrive+macpath+"/"+filename])
-    if macwhat == "paths":  
+    elif macwhat == "paths":  
         csvOut=open(macdoc+".csv",'w')
         w=csv.writer(csvOut)
         for macpath, dirs, files in os.walk(macpath):
@@ -168,8 +168,8 @@ else:
         for macpath, dirs, files in os.walk(macpath):
             for filename in files:
                 w.writerow([macdrive+macpath+"/"+filename])
-        new_rows = [] # a holder for our modified rows when we make them
-        changes = {   # a dictionary of changes to make, find 'key' substitue with 'value'
+new_rows = [] # a holder for our modified rows when we make them
+changes = {   # a dictionary of changes to make, find 'key' substitue with 'value'
             '/' : ':', # I assume both 'key' and 'value' are strings
             }
 with open(macdoc+'.csv', 'rb') as f:
