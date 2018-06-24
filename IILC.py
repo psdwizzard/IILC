@@ -168,21 +168,43 @@ else:
         for macpath, dirs, files in os.walk(macpath):
             for filename in files:
                 w.writerow([macdrive+macpath+"/"+filename])
-new_rows = [] # a holder for our modified rows when we make them
-changes = {   # a dictionary of changes to make, find 'key' substitue with 'value'
+                
+     #else ==             
+indsign = raw_input("you want me to prep this for indesign? Y or N")
+
+if indsign == "Y":
+    new_rows = [] # a holder for our modified rows when we make them
+    changes = {   # a dictionary of changes to make, find 'key' substitue with 'value'
             '/' : ':', # I assume both 'key' and 'value' are strings
             }
-with open(macdoc+'.csv', 'rb') as f:
-    reader = csv.reader(f) # pass the file to our csv reader
-    for row in reader:     # iterate over the rows in the file
-        new_row = row      # at first, just copy the row
-        for key, value in changes.items(): # iterate over 'changes' dictionary
-           new_row = [ x.replace(key, value) for x in new_row ] # make the substitutions
-        new_rows.append(new_row) # add the modified rows
-with open(macdoc+'.csv', 'wb') as f:
+    with open(macdoc+'.csv', 'rb') as f:
+        reader = csv.reader(f) # pass the file to our csv reader
+        for row in reader:     # iterate over the rows in the file
+            new_row = row      # at first, just copy the row
+            for key, value in changes.items(): # iterate over 'changes' dictionary
+               new_row = [ x.replace(key, value) for x in new_row ] # make the substitutions
+            new_rows.append(new_row) # add the modified rows
+    with open(macdoc+'.csv', 'wb') as f:
         # Overwrite the old file with the modified rows
-    writer = csv.writer(f)
-    writer.writerows(new_rows)          
+        writer = csv.writer(f)
+        writer.writerows(new_rows)
+if indsign == "y":
+    new_rows = [] # a holder for our modified rows when we make them
+    changes = {   # a dictionary of changes to make, find 'key' substitue with 'value'
+            '/' : ':', # I assume both 'key' and 'value' are strings
+            }
+    with open(macdoc+'.csv', 'rb') as f:
+        reader = csv.reader(f) # pass the file to our csv reader
+        for row in reader:     # iterate over the rows in the file
+            new_row = row      # at first, just copy the row
+            for key, value in changes.items(): # iterate over 'changes' dictionary
+               new_row = [ x.replace(key, value) for x in new_row ] # make the substitutions
+            new_rows.append(new_row) # add the modified rows
+    with open(macdoc+'.csv', 'wb') as f:
+        # Overwrite the old file with the modified rows
+        writer = csv.writer(f)
+        writer.writerows(new_rows)
+
 #!/usr/bin/env python
 
         
