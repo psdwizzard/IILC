@@ -2,7 +2,7 @@ from sys import version_info
 import os, csv
 
 py3 = version_info[0] > 2 #creates boolean value for test that Python major version > 2
-
+ext = (".jpg",'.png', '.jpg', '.jpeg',".tif",".psd",".gif",".pdf",".ai",".eps")
 if py3:
     what = input("Do you want files or paths:")
     path = input("Enter Path: ")
@@ -32,13 +32,15 @@ for path, dirs, files in os.walk(path):
             w.writerow([filename.rstrip()])
         else:
             if os.name == 'nt':
-                w.writerow([os.path.join(path, filename).rstrip()])
+                if filename.endswith(tuple(ext)):
+                    w.writerow([os.path.join(path, filename).rstrip()])
             else:
                 data = drive + os.path.join(path, filename).rstrip()
-                if indsign == "Y" or indsign == "y":
-                    for key, value in changes.items(): # iterate over 'changes' dictionary
-                        data = data.replace(key, value) # make the substitutions
-                w.writerow([data])
+                if filename.endswith(tuple(ext)):
+                    if indsign == "Y" or indsign == "y":
+                        for key, value in changes.items(): # iterate over 'changes' dictionary
+                            data = data.replace(key, value) # make the substitutions
+                    w.writerow([data])
 csvOut.close()
 path = raw_input("Enter Path Again: ")
 with open ("Final "+name+'.csv', 'wb') as outcsv:
