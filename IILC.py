@@ -2,7 +2,7 @@ from sys import version_info
 import os, csv
 
 py3 = version_info[0] > 2 #creates boolean value for test that Python major version > 2
-ext = (".jpg",'.png', '.jpg', '.jpeg',".tif",".psd",".gif",".pdf",".ai",".eps")
+ext = (".jpg",'.png', '.jpg', '.jpeg',".tif",".psd",".gif",".pdf",".ai",".eps", '.JPG', '.PNG', '.JPEG','.TIFF', '.PSD', '.GIF', '.PDF', '.AI', '.EPS')
 if py3:
     what = input("Do you want files or paths:")
     path = input("Enter Path: ")
